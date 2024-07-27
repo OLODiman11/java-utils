@@ -8,8 +8,7 @@ public class Sorting
 {
 	private Sorting() {}
 	
-	
-	public static void bubbleSortInPlace(int[] arr) { 
+	public static void bubbleSort(int[] arr) { 
     	while(true) {    		
     		boolean sorted = true;
     		for(int i = 0; i < arr.length - 1; i++) {
@@ -21,13 +20,6 @@ public class Sorting
     		if(sorted) break;
     	} 
 	}
-    
-	public static int[] bubbleSort(int[] arr)
-    {
-		int[] arrClone = arr.clone();
-		bubbleSortInPlace(arrClone);
-    	return arrClone;
-    }
     
     private static int[] swapItems(int[] arr, int i1, int i2) {
     	int temp = arr[i1];

@@ -17,57 +17,22 @@ public class SortingTests {
 
 	@Nested
 	@DisplayName("Пузырьковая сортировка")
-	public class BubbleSort {
-		@Nested
-		@DisplayName("В новом массиве")
-		public class ClonedArray {			
-			@ParameterizedTest
-			@ArgumentsSource(UnsortedArrays.class)
-			@DisplayName("Сортирует массив")
-			public void sortsArray(int[] arr)
-			{    	
-				int[] res = Sorting.bubbleSort(arr);
-				
-				assertThat(isSorted(res)).isTrue();
-			}
-			
-			@ParameterizedTest
-			@ArgumentsSource(UnsortedArrays.class)
-			@DisplayName("Не изменяет исходный массив")
-			public void doesntModifyOriginalArray(int[] arr)
-			{
-				int[] arrClone = arr.clone();
-				
-				Sorting.bubbleSort(arr);
-				
-				assertThat(arr).isEqualTo(arrClone);
-			}
+	public class BubbleSort {			
+		@ParameterizedTest
+		@ArgumentsSource(UnsortedArrays.class)
+		@DisplayName("Сортирует массив")
+		public void sortsArray(int[] arr) {    	
+			Sorting.bubbleSort(arr);
+			assertThat(isSorted(arr)).isTrue();
 		}
 		
-		@Nested
-		@DisplayName("В исходном массиве")
-		public class InPlace {
-			@ParameterizedTest
-			@ArgumentsSource(UnsortedArrays.class)
-			@DisplayName("Сортирует массив")
-			public void sortsArray(int[] arr)
-			{
-				Sorting.bubbleSortInPlace(arr);
-				
-				assertThat(isSorted(arr)).isTrue();
-			}
-			    
-			@ParameterizedTest
-			@ArgumentsSource(UnsortedArrays.class)
-			@DisplayName("Изменяет исходный массив")
-			public void modifiesOriginalArray(int[] arr)
-			{
-				int[] arrClone = arr.clone();
-			
-				Sorting.bubbleSortInPlace(arr);
-				
-				assertThat(arr).isNotEqualTo(arrClone);
-			}
+		@ParameterizedTest
+		@ArgumentsSource(UnsortedArrays.class)
+		@DisplayName("Сортирует на месте")
+		public void sortsInPlace(int[] arr) {
+			int[] arrClone = arr.clone();
+			Sorting.bubbleSort(arr);
+			assertThat(arr).isNotEqualTo(arrClone);
 		}
 	}
 	
