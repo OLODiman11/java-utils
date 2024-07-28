@@ -50,7 +50,8 @@ public class SortingTests {
         public Stream<Arguments> provideArguments(ExtensionContext context) {
             return Stream.of(
 					Arguments.of(Named.of("Пузырьковая сортировка", (Algorithm) (int[] arr) -> Sorting.bubbleSort(arr)), UnsortedArrays.get()),
-					Arguments.of(Named.of("Selection sort", (Algorithm) (int[] arr) -> Sorting.selectionSort(arr)), UnsortedArrays.get())
+					Arguments.of(Named.of("Selection sort", (Algorithm) (int[] arr) -> Sorting.selectionSort(arr)), UnsortedArrays.get()),
+					Arguments.of(Named.of("Insertion sort", (Algorithm) (int[] arr) -> Sorting.insertionSort(arr)), UnsortedArrays.get())
             );
         }
     }
