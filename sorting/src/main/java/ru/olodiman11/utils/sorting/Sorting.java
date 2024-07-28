@@ -50,6 +50,54 @@ public class Sorting
 		}
 	}
 	
+	public static void mergeSort(int[] arr) {
+		arr = mergeSortUtil(arr);
+	}
+	
+	private static int[] mergeSortUtil(int[] arr) {
+		if(arr.length <= 1) return arr;
+		
+		int[] arr1 = getSubsequence(arr, 0, arr.length / 2);
+		int[] arr2 = getSubsequence(arr, arr.length / 2, arr.length);
+		
+		int[] sArr1 = mergeSortUtil(arr1);
+		int[] sArr2 = mergeSortUtil(arr2);
+		
+		int i1 = 0;
+		int i2 = 0;
+		for(int i = 0; i < arr.length; i++) {
+			if(sArr1[i1] < sArr2[i2]) {
+				arr[i] = sArr1[i1++];
+				if(i1 >= sArr1.length) {
+					finishTail(arr, sArr2, i + 1);
+					break;
+				}
+			}
+			else {
+				arr[i] = sArr2[i2++];
+				if(i2 >= sArr2.length) {
+					finishTail(arr, sArr1, i + 1);
+					break;
+				}
+			}
+		}
+		
+		return arr;
+	}
+	
+	private static void finishTail(int[] arr1, int[] arr2, int from) {
+		int i2 = arr2.length - (arr1.length - from);
+		for(int i = from; i < arr1.length; i++)
+			arr1[i] = arr2[i2++];
+	}
+	
+	private static int[] getSubsequence(int[] arr, int from, int to) {
+		int[] res = new int[to-from];
+		for(int i = from; i < to; i++)
+			res[i-from] = arr[i];
+		return res;
+	}
+	
 	private static void moveItem(int[] arr, int from, int to) {
 		if(from == to) return;
 		
