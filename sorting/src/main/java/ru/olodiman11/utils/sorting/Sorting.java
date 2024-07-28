@@ -13,7 +13,7 @@ public class Sorting
     		boolean sorted = true;
     		for(int i = 0; i < arr.length - 1; i++) {
     			if(arr[i] > arr[i + 1]) {
-    				arr = swapItems(arr, i, i + 1);
+    				swapItems(arr, i, i + 1);
     				sorted = false;
     			}
     		}
@@ -41,12 +41,11 @@ public class Sorting
 		}
 	}
 	
-    private static int[] swapItems(int[] arr, int i1, int i2) {
-    	if(i1 == i2) return arr;
+    private static void swapItems(int[] arr, int i1, int i2) {
+    	if(i1 == i2) return;
     	
     	int temp = arr[i1];
     	arr[i1] = arr[i2];
     	arr[i2] = temp;
-    	return arr;
     }
 }
